@@ -1,0 +1,4 @@
+#.gitignore
+venv/
+meican/__pycache__/
+.idea/
