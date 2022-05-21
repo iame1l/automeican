@@ -1,4 +1,5 @@
 import datetime
+import random
 import time
 import signal
 
@@ -30,11 +31,17 @@ def executeAutoOrder(m, index):
     try:
         dishes = m.list_dishes()
         limit_price = m.get_price_limit(index)
-        for dish in dishes:
+        accCount = 0
+        while accCount < 100:
+            dish = random.choice(dishes)
             if dish.price == limit_price:
-                print('G')
+                m.order(dish)
+                print(strTime(), ' 自动下单成功, ', dish.name)
+                return
+            accCount = accCount + 1
+
     except NoOrderAvailable:
-        print('今天没有开放点餐')
+        print(strTime(), ' 已经点餐或者不开放 !')
 
     print('excuteAutoOrder ', index, ' time: ', strTime())
 
@@ -51,7 +58,6 @@ if __name__ == '__main__':
     while True:
         m.load_tabs(True)
         time_list = m._time_list
-        # time_list = [34200.0, 52200.0]
         index = 0
         for tarTime in time_list:
             now = getNowTime()
