@@ -39,11 +39,8 @@ def executeAutoOrder(m, index):
                 print(strTime(), ' 自动下单成功, ', dish.name)
                 return
             accCount = accCount + 1
-
     except NoOrderAvailable:
         print(strTime(), ' 已经点餐或者不开放 !')
-
-    print('excuteAutoOrder ', index, ' time: ', strTime())
 
 
 if __name__ == '__main__':
