@@ -34,13 +34,10 @@ class RestUrl(object):
     @classmethod
     def calender_items(cls, detail=False):
         today = datetime.date.today()
-        #one_week = datetime.timedelta(weeks=1)
-        one_week = datetime.timedelta(days=1)
-        # print(today.strftime("%Y-%m-%d"))
+        # one_week = datetime.timedelta(days=1)
         data = {
-            "beginDate": (today + one_week).strftime("%Y-%m-%d"),
-            #"endDate": (today + one_week).strftime("%Y-%m-%d"),
-            "endDate": (today + one_week).strftime("%Y-%m-%d"),
+            "beginDate": today.strftime("%Y-%m-%d"),
+            "endDate": today.strftime("%Y-%m-%d"),
             "withOrderDetail": detail,
         }
         return cls.get_base_url("preorder/api/v2.1/calendarItems/list", data)
